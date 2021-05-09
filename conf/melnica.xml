@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Melnica shutdown="SD">
+	<Service name="localhost" activeWebPlatforms="servlet">
+		<Bosphorus port="8081" protocol="HTTP/1.1" timeout="45000" />
+		<Host domain="localhost" unpackWars="true" appRootFolderName="webapps" />
+	</Service>
+</Melnica>
