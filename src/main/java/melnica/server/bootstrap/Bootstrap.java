@@ -13,5 +13,6 @@ public class Bootstrap {
 			server.init();
 		}
 		server.start();
+		System.out.println("Melnica web server is started.");
 	}
 }

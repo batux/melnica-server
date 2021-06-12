@@ -92,9 +92,10 @@ public class ServerConfigurationAssembler {
 	private HostConfiguration createHostConf(Element element) {
 		
 		String domainAsText = element.getAttribute("domain");
+		String name = element.getAttribute("name");
 		String unpackWarsAsText = element.getAttribute("unpackWars");
 		String appRootFolderNameAsText = element.getAttribute("appRootFolderName");
-		return new HostConfiguration(domainAsText, appRootFolderNameAsText, Boolean.parseBoolean(unpackWarsAsText));
+		return new HostConfiguration(name, domainAsText, appRootFolderNameAsText, Boolean.parseBoolean(unpackWarsAsText));
 	}
 	
 	private List<String> createActiveWebPlatformConf(Element element) {

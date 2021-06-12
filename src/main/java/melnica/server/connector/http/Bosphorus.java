@@ -39,11 +39,11 @@ public class Bosphorus implements LifeCycle {
 	public void start() {
 		List<Host> hosts = this.service.getHosts();
 		for (Host host : hosts) {
-			listen(host.getDomain());
+			listen(host.getDomain(), host.getName());
 		}
 	}
 
-	public void listen(final String domain) {
+	public void listen(final String domain, final String hostName) {
 
 		int port = this.configuration.getPort();
 		
@@ -52,7 +52,8 @@ public class Bosphorus implements LifeCycle {
 			System.exit(1);
 		}
 		
-		startToListen(domain);
+		System.out.println("Http Connection 1.1 - '" + this.name + "' is started to listen ==> (Domain: " + domain + ", Port:" + port + ")" );
+		startToListen(domain, hostName);
 		this.executor.shutdown();
 	}
 
@@ -80,12 +81,12 @@ public class Bosphorus implements LifeCycle {
 		return serverSocket;
 	}
 	
-	private void startToListen(String domain) {
+	private void startToListen(String domain, String hostName) {
 		
 		while (!shutdown) {
 			try {
 				Socket socket = serverSocket.accept();
-				this.executor.execute(new SocketContextProcessor(this.service, this, socket, domain));
+				this.executor.execute(new SocketContextProcessor(this.service, this, socket, domain, hostName));
 			} 
 			catch (IOException e) {
 				System.out.println("Server socket exception: " + e.getMessage());

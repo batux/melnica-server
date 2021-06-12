@@ -45,6 +45,7 @@ public class Service implements LifeCycle {
 		try {
 			initHosts(this.configuration.getHosts());
 			initConnectors(this.configuration.getConnectors());
+			System.out.println("Service - " + name + " is initialized.");
 		}
 		catch(Exception e) {
 			System.out.println("Service init exception" + e.getMessage());
@@ -58,17 +59,28 @@ public class Service implements LifeCycle {
 			host.start();
 		}
 		
-		for(String connectorName : connectors.keySet()) {
-			Bosphorus connector = connectors.get(connectorName);
-			connector.start();
+		for(final String connectorName : connectors.keySet()) {
+			Thread thread = new Thread(new Runnable() {
+				public void run() {
+					Bosphorus connector = connectors.get(connectorName);
+					connector.start();
+				}
+			});
+			thread.start();
 		}
+		System.out.println("Service - " + name + " is started.");
 	}
 	
 	public boolean execute(SocketContext socketContext) {
 		
-		String domain = socketContext.getDomain();
-		Host host = this.hosts.get(domain);
+		Host host = this.hosts.get(socketContext.getHostName());
 		if(host == null) {
+			try {
+				socketContext.getSocket().close();
+			} 
+			catch (IOException e) {
+				System.out.println("Socket close exception: " + e.getMessage());
+			}
 			return true;
 		}
 		

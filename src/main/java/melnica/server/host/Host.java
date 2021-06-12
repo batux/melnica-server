@@ -56,7 +56,7 @@ public class Host implements LifeCycle {
 	}
 	
 	public String getName() {
-		return this.configuration.getDomain();
+		return this.configuration.getName();
 	}
 	
 	public String getDomain() {
