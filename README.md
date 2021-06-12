@@ -10,9 +10,13 @@ For each request, socket connection is established that has output/input streams
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Melnica shutdown="SD">
-	<Service name="localhost" activeWebPlatforms="servlet">
+	<Service name="localhost_service_8081" activeWebPlatforms="servlet">
 		<Bosphorus port="8081" protocol="HTTP/1.1" timeout="45000" />
-		<Host domain="localhost" unpackWars="true" appRootFolderName="webapps" />
+		<Host domain="localhost" name="first_local" unpackWars="true" appRootFolderName="webapps" />
+	</Service>
+	<Service name="localhost_service_8082" activeWebPlatforms="servlet">
+		<Bosphorus port="8082" protocol="HTTP/1.1" timeout="45000" />
+		<Host domain="localhost" name="second_local" unpackWars="true" appRootFolderName="webapps" />
 	</Service>
 </Melnica>
 ```
