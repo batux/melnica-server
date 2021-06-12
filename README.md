@@ -1,4 +1,5 @@
-# Melnica Server
+# Melnica Web Server <img src="https://user-images.githubusercontent.com/2838457/121791243-6f032a00-cbf0-11eb-9b5f-0f7cc2d68327.png" width="150px" height="90px" align="right" />
+
 Melnica Server is a custom basic Servlet Container application which depends on Socket Programming.
 
 ## The Description of Project
@@ -10,9 +11,13 @@ For each request, socket connection is established that has output/input streams
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Melnica shutdown="SD">
-	<Service name="localhost" activeWebPlatforms="servlet">
+	<Service name="localhost_service_8081" activeWebPlatforms="servlet">
 		<Bosphorus port="8081" protocol="HTTP/1.1" timeout="45000" />
-		<Host domain="localhost" unpackWars="true" appRootFolderName="webapps" />
+		<Host domain="localhost" name="first_local" unpackWars="true" appRootFolderName="webapps" />
+	</Service>
+	<Service name="localhost_service_8082" activeWebPlatforms="servlet">
+		<Bosphorus port="8082" protocol="HTTP/1.1" timeout="45000" />
+		<Host domain="localhost" name="second_local" unpackWars="true" appRootFolderName="webapps" />
 	</Service>
 </Melnica>
 ```
