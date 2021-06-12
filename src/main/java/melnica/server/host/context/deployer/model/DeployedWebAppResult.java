@@ -3,12 +3,12 @@ package melnica.server.host.context.deployer.model;
 public class DeployedWebAppResult {
 
 	private boolean success;
-	private String applicationName;
-	private String absoluteWebAppFilePath;
+	private String webApplicationName;
+	private String webApplicationFilePath;
 	
-	public DeployedWebAppResult(String applicationName, String absoluteWebAppFilePath, boolean success) {
-		this.applicationName = applicationName;
-		this.absoluteWebAppFilePath = absoluteWebAppFilePath;
+	public DeployedWebAppResult(String webApplicationName, String webApplicationFilePath, boolean success) {
+		this.webApplicationName = webApplicationName;
+		this.webApplicationFilePath = webApplicationFilePath;
 		this.success = success;
 	}
 	
@@ -16,11 +16,11 @@ public class DeployedWebAppResult {
 		return success;
 	}
 	
-	public String getApplicationName() {
-		return this.applicationName;
+	public String getWebApplicationName() {
+		return this.webApplicationName;
 	}
 	
-	public String getAbsoluteWebAppFilePath() {
-		return this.absoluteWebAppFilePath;
+	public String getWebApplicationFilePath() {
+		return this.webApplicationFilePath;
 	}
 }

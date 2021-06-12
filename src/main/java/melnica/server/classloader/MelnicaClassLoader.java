@@ -5,28 +5,46 @@ import java.io.FileInputStream;
 
 public class MelnicaClassLoader extends ClassLoader {
 
-    private String basePath = System.getProperty("user.dir") + File.separator + "webapps";
+    private String webApplicationClassFolderPath;
     
     public MelnicaClassLoader(String applicationName) {
-    	basePath += File.separator + applicationName + File.separator + "WEB-INF" + File.separator + "classes" + File.separator;
+    	webApplicationClassFolderPath = generateBasePath(applicationName); 
     }
 
     @Override
     protected Class<?> findClass(final String name) throws ClassNotFoundException {
+    	
         String fullName = name.replace('.', '/');
         fullName += ".class";
 
-        String path = basePath + fullName ;
+        String path = webApplicationClassFolderPath + fullName ;
         try {
-            FileInputStream fis = new FileInputStream(path);
-            byte[] data = new byte[fis.available()];
-            fis.read(data);
-            Class<?> res = defineClass(name, data, 0, data.length);
-            fis.close();
-
+            FileInputStream classFileInputStream = new FileInputStream(path);
+            byte[] binaryDataOfClassFile = new byte[classFileInputStream.available()];
+            
+            classFileInputStream.read(binaryDataOfClassFile);
+            Class<?> res = defineClass(name, binaryDataOfClassFile, 0, binaryDataOfClassFile.length);
+            classFileInputStream.close();
+            
             return res;
         } catch(Exception e) {
             return super.findClass(name);
         }
+    }
+    
+    private String generateBasePath(String applicationName) {
+    	    	
+    	StringBuilder builder = new StringBuilder();
+    	builder.append(MelnicaClassLoaderConstant.WEB_APPLICATION_DIRECTORY);
+    	builder.append(File.separator);
+    	builder.append(MelnicaClassLoaderConstant.WEB_APPLICATION_FOLDER_NAME);
+    	builder.append(File.separator);
+    	builder.append(applicationName);
+    	builder.append(File.separator);
+    	builder.append(MelnicaClassLoaderConstant.WEB_APPLICATION_INFO_FOLDER_NAME);
+    	builder.append(File.separator);
+    	builder.append(MelnicaClassLoaderConstant.WEB_APPLICATION_CLASS_FOLDER_NAME);
+    	builder.append(File.separator);
+    	return builder.toString();
     }
 }

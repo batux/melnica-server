@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 
+import melnica.server.host.context.deployer.JarFileProcessor;
 import melnica.server.host.context.deployer.WebAppDeployer;
 import melnica.server.host.context.deployer.model.DeployedWebAppResult;
 import melnica.server.host.context.deployer.model.DeployerContext;
-import melnica.server.host.context.deployer.util.JarFileProcessor;
 
 public class WarAppDeployer extends WebAppDeployer {
 
@@ -20,8 +20,8 @@ public class WarAppDeployer extends WebAppDeployer {
 	@Override
 	public DeployedWebAppResult deploy(DeployerContext context) throws IOException {
 		
-		URL warUrl = JarFileProcessor.buildJarUrl(context.getAppFile());
-		String webAppFilePath = JarFileProcessor.expandWar(warUrl, new File(context.getWebAppBaseFilePath()), context.getWebAppName());
-		return new DeployedWebAppResult(context.getWebAppName(), webAppFilePath, !webAppFilePath.isBlank());
+		URL warUrl = JarFileProcessor.buildJarUrl(context.getWebApplicationFile());
+		String webApplicationFilePath = JarFileProcessor.expandWar(warUrl, new File(context.getWebApplicationsFolderPath()), context.getWebApplicationName());
+		return new DeployedWebAppResult(context.getWebApplicationName(), webApplicationFilePath, !webApplicationFilePath.isBlank());
 	}
 }

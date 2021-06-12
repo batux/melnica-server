@@ -6,8 +6,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import melnica.server.LifeCycle;
 import melnica.server.application.configuration.HostConfiguration;
+import melnica.server.host.context.deployer.WebAppManager;
 import melnica.server.host.context.deployer.model.DeployedWebAppResult;
-import melnica.server.host.context.manager.WebAppManager;
 import melnica.server.service.Service;
 import melnica.server.web.context.WebAppContext;
 
@@ -30,15 +30,11 @@ public class Host implements LifeCycle {
 	
 	public void init() {
 		
-		this.appManager.process();
+		this.appManager.deployWebApplications();
 		initWebAppContexts();
 	}
 
 	public void start() {
-		startWebApps();
-	}
-	
-	private void startWebApps() {
 		
 		if(this.contextsWithDisplayName == null) {
 			this.contextsWithDisplayName = new HashMap<String, WebAppContext>(this.contexts.size());
@@ -53,7 +49,7 @@ public class Host implements LifeCycle {
 			String displayName = context.getWebXml().getWebAppDisplayName();
 			this.contextsWithDisplayName.put(displayName, context);
 		}
-	}
+	}	
 	
 	public synchronized WebAppContext findWebAppContext(String displayName) {
 		return this.contextsWithDisplayName.get(displayName);
@@ -74,10 +70,14 @@ public class Host implements LifeCycle {
 	public Map<String, WebAppContext> getWebAppMap() {
 		return this.contextsWithDisplayName;
 	}
+	
+	public HostConfiguration getConfiguration() {
+		return this.configuration;
+	}
 
 	public synchronized void addWebAppContext(DeployedWebAppResult result) {
 
-		this.contexts.put(result.getApplicationName(), new WebAppContext(this, result));
+		this.contexts.put(result.getWebApplicationName(), new WebAppContext(this, result));
 	}
 	
 	public synchronized boolean isWepAppExistInMap(String webAppName) {

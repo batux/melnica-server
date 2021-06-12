@@ -1,4 +1,4 @@
-package melnica.server.web.context.xml.parser;
+package melnica.server.configuration.xml.parser;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,17 +11,18 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import melnica.server.web.context.model.WebXml;
+import melnica.server.application.configuration.ServerConfiguration;
+import melnica.server.configuration.xml.assembler.ServerConfigurationAssembler;
 
-public class WebXmlParser {
-
-	private WebXmlAssembler assembler;
+public class ServerConfigurationParser {
 	
-	public WebXmlParser(WebXmlAssembler assembler) {
+	private ServerConfigurationAssembler assembler;
+	
+	public ServerConfigurationParser(ServerConfigurationAssembler assembler) {
 		this.assembler = assembler;
 	}
-	
-	public WebXml parse(String path) throws ParserConfigurationException, SAXException, IOException {
+
+	public ServerConfiguration parse(String path) throws ParserConfigurationException, SAXException, IOException {
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
@@ -29,7 +30,6 @@ public class WebXmlParser {
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document document = builder.parse(new File(path));
 		document.getDocumentElement().normalize();
-	
-		return this.assembler.apply(document);
+		return this.assembler.process(document);
 	}
 }

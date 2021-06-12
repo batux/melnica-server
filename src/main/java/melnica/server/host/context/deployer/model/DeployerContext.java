@@ -4,31 +4,31 @@ import java.io.File;
 
 public class DeployerContext {
 
-	private File appFile;
-	private String webAppName;
-	private String webAppFileName;
-	private String webAppBaseFilePath;
+	private File webApplicationFile;
+	private String webApplicationName;
+	private String webApplicationFilePath;
+	private String webApplicationsFolderPath;
 	
-	public DeployerContext(File file, String webAppFileName, String webAppBaseFilePath) {
-		this.appFile = file;
-		this.webAppFileName = webAppFileName;
-		this.webAppName = this.webAppFileName.replace(".war", "");
-		this.webAppBaseFilePath = webAppBaseFilePath;
+	public DeployerContext(File webApplicationFile, String webApplicationFilePath, String webApplicationsFolderPath) {
+		this.webApplicationFile = webApplicationFile;
+		this.webApplicationFilePath = webApplicationFilePath;
+		this.webApplicationName = this.webApplicationFilePath.replace(".war", "");
+		this.webApplicationsFolderPath = webApplicationsFolderPath;
 	}
 	
-	public File getAppFile() {
-		return this.appFile;
+	public File getWebApplicationFile() {
+		return this.webApplicationFile;
 	}
 	
-	public String getWebAppName() {
-		return this.webAppName;
+	public String getWebApplicationName() {
+		return this.webApplicationName;
 	}
 	
-	public String getWebAppBaseFilePath() {
-		return this.webAppBaseFilePath;
+	public String getWebApplicationsFolderPath() {
+		return this.webApplicationsFolderPath;
 	}
 	
-	public String getWebAppFileName() {
-		return this.webAppFileName;
+	public String getWebApplicationFilePath() {
+		return this.webApplicationFilePath;
 	}
 }

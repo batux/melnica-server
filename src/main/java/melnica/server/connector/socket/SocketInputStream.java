@@ -4,8 +4,8 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import melnica.server.connector.model.HttpHeader;
-import melnica.server.connector.model.HttpRequestLine;
+import melnica.server.connector.http.request.HttpHeader;
+import melnica.server.connector.http.request.HttpRequestLine;
 
 public class SocketInputStream extends InputStream {
 

@@ -3,10 +3,10 @@ package melnica.server.host.context.deployer.impl;
 import java.io.File;
 import java.util.Locale;
 
+import melnica.server.host.context.deployer.JarFileProcessor;
 import melnica.server.host.context.deployer.WebAppDeployer;
 import melnica.server.host.context.deployer.model.DeployedWebAppResult;
 import melnica.server.host.context.deployer.model.DeployerContext;
-import melnica.server.host.context.deployer.util.JarFileProcessor;
 
 public class DirectoryAppDeployer extends WebAppDeployer {
 
@@ -19,7 +19,7 @@ public class DirectoryAppDeployer extends WebAppDeployer {
 	@Override
 	public DeployedWebAppResult deploy(DeployerContext context) {
 		
-		String webAppFilePath = JarFileProcessor.expandDirectory(new File(context.getWebAppBaseFilePath()), context.getWebAppName());
-		return new DeployedWebAppResult(context.getWebAppName(), webAppFilePath, !webAppFilePath.isBlank());
+		String webApplicationFilePath = JarFileProcessor.expandDirectory(new File(context.getWebApplicationsFolderPath()), context.getWebApplicationName());
+		return new DeployedWebAppResult(context.getWebApplicationName(), webApplicationFilePath, !webApplicationFilePath.isBlank());
 	}
 }
