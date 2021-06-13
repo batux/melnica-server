@@ -1,4 +1,4 @@
-# Melnica Web Server <img src="https://user-images.githubusercontent.com/2838457/121791243-6f032a00-cbf0-11eb-9b5f-0f7cc2d68327.png" width="150px" height="90px" align="right" />
+# Melnica Web Server <img src="https://user-images.githubusercontent.com/2838457/121792180-53048600-cbfa-11eb-831b-1079ebf97b39.png" width="180px" height="90px" align="right" />
 
 Melnica Server is a custom basic Servlet Container application which depends on Socket Programming.
 
