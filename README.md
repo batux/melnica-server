@@ -29,7 +29,7 @@ The details will be continued ...
 
 HTML content which served from Melnica Server rendered by browser.
 
-![open](https://user-images.githubusercontent.com/2838457/117578458-1921fa80-b0f7-11eb-99ee-b98ad8f6379e.png)
+![open](https://user-images.githubusercontent.com/2838457/121792546-096a6a00-cbff-11eb-95d9-929c9487306e.png)
 
 
 Http header added to client response.
