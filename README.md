@@ -22,10 +22,24 @@ For each request, socket connection is established that has output/input streams
 </Melnica>
 ```
 
-The details will be continued ...
+Melnica Web Server architecture summary document ==> https://github.com/batux/melnica-server/files/6644410/Developing.Your.Own.Web.Server.pdf
+
+# Melnica Web Server Architecture
+
+Component Acrhitecture Overview
+
+![open](https://user-images.githubusercontent.com/2838457/121818029-7b899000-cc8d-11eb-8bbc-a0c49483aba4.png)
+
+Melnica Web Server initialization flow
+
+![open](https://user-images.githubusercontent.com/2838457/121818054-9e1ba900-cc8d-11eb-8b8f-d2a167c6a141.png)
+
+Melnica Web Server start flow
+
+![open](https://user-images.githubusercontent.com/2838457/121818091-c7d4d000-cc8d-11eb-9797-0ab69c83e04b.png)
 
 
-# Melnica Server
+# Melnica Web Server Demo Results
 
 HTML content which served from Melnica Server rendered by browser.
 
