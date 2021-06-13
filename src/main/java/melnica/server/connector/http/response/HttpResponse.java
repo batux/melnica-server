@@ -593,4 +593,37 @@ public class HttpResponse implements HttpServletResponse {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void sendFavicon() throws IOException {
+		
+        byte[] bytes = new byte[BUFFER_SIZE];
+        FileInputStream fis = null;
+        try {
+	        File file = new File(System.getProperty("user.dir") + File.separator + "conf", "favicon.ico");
+	        fis = new FileInputStream(file);
+	        
+	        output.write(this.getProtocol().getBytes());
+	        output.write(" ".getBytes());
+	        output.write(String.valueOf(HttpServletResponse.SC_OK).getBytes());
+			output.write(" ".getBytes());
+			output.write(getStatusMessage(HttpServletResponse.SC_OK).getBytes());
+			output.write("\r\n".getBytes());
+			output.write("Content-Type:image/x-icon;charset=utf-8\r\n".getBytes());
+			output.write("\r\n".getBytes());
+	        
+	        int ch = fis.read(bytes, 0, BUFFER_SIZE);
+	        while (ch!=-1) {
+	            output.write(bytes, 0, ch);
+	            ch = fis.read(bytes, 0, BUFFER_SIZE); }
+	        }
+        catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }finally {
+        	if (fis!=null) {
+        		output.flush();
+        		fis.close();
+        		output.close();
+        	}
+        }
+    }
 }

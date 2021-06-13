@@ -94,6 +94,11 @@ public class Service implements LifeCycle {
 
 			HttpRequestParser.parseBody(input, request, output);
 			HttpRequestParser.parseHeaders(input, request);
+			
+			if(request.getRequestURI().contains("favicon.ico")) {
+				response.sendFavicon();
+				return true;
+			}
 
 			WebAppContext context = findWebApplication(request.getRequestURI());
 			if(context != null) {
