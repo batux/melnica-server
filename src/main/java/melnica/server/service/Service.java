@@ -73,17 +73,6 @@ public class Service implements LifeCycle {
 	
 	public boolean execute(SocketContext socketContext) {
 		
-		Host host = this.hosts.get(socketContext.getHostName());
-		if(host == null) {
-			try {
-				socketContext.getSocket().close();
-			} 
-			catch (IOException e) {
-				System.out.println("Socket close exception: " + e.getMessage());
-			}
-			return true;
-		}
-		
 		try {
 			SocketInputStream input = new SocketInputStream(socketContext.getSocket().getInputStream(), 2048);
 			OutputStream output = socketContext.getSocket().getOutputStream();
@@ -103,11 +92,17 @@ public class Service implements LifeCycle {
 			WebAppContext context = findWebApplication(request.getRequestURI());
 			if(context != null) {
 				
+				if(!request.getRequestURI().contains("/servlet")) {
+					response.sendStaticResource2();
+					return true;
+				}
+				
 				int index1 = request.getRequestURI().indexOf("/");
 				int index2 = request.getRequestURI().indexOf("/", index1 + 1);
 				if(index1 < 0 || index2 < 0) {
 					return true;
 				}
+				
 				MelnicaServletContext servletContext = context.findServletContext(request.getRequestURI().substring(index2));
 				if(servletContext != null) {
 					MelnicaFilterChain headFilterChain = servletContext.getHeadFilterChain();

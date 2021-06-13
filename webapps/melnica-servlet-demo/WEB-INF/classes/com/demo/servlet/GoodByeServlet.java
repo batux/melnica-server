@@ -19,7 +19,7 @@ public class GoodByeServlet extends HttpServlet {
 		
 		response.addHeader("Melnica", "Batuhan Düzgün");
 		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().println("<htm><body><h1>Good Bye Melnica Server!</h1></body></html>");
+		response.getWriter().println("<htm><body><h1>Good Bye Melnica Server!</h1><img src=\"/melnica-servlet-demo/melnica_server_logo.png\" width=\"200px\" height=\"100px\" /></body></html>");
 		System.out.println(">>> GoodByeServlet is executed! (HTTP GET)");
 	}
 
@@ -27,7 +27,7 @@ public class GoodByeServlet extends HttpServlet {
 		
 		response.addHeader("Melnica", "Batuhan Düzgün");
 		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().println("<htm><body>Good Bye Melnica Server!</body></html>");
+		response.getWriter().println("<htm><body><h1>Good Bye Melnica Server!</h1><img src=\"/melnica-servlet-demo/melnica_server_logo.png\" width=\"200px\" height=\"100px\" /></body></html>");
 		System.out.println(">>> GoodByeServlet is executed! (HTTP POST)");
 	}
 }

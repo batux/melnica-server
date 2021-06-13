@@ -19,6 +19,7 @@ public class WebFilter2 implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
+		/*
 		String authValue = req.getHeader("auth");
 		if(!"batux".equals(authValue)) {
 			resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -26,6 +27,7 @@ public class WebFilter2 implements Filter {
 			resp.getWriter().println("<htm><body><h1>You need to pass 'auth' value in header!</h1></body></html>");
 			return;
 		}
+		*/
 		
 		resp.addHeader("WebFilter2", "I'm web filter2!");
 		System.out.println(">>> WebFilter2 is executed!");

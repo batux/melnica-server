@@ -20,7 +20,7 @@ public class GreetingServlet extends HttpServlet {
 		
 		response.addHeader("Melnica", "Batuhan Düzgün");
 		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().println("<htm><body><h1>Hello Melnica Server!</h1></body></html>");
+		response.getWriter().println("<htm><body><h1>Hello Melnica Server!</h1><img src=\"/melnica-servlet-demo/melnica_server_logo.png\" width=\"200px\" height=\"100px\" /></body></html>");
 		System.out.println(">>> GreetingServlet is executed! (HTTP GET)");
 	}
 
@@ -28,7 +28,7 @@ public class GreetingServlet extends HttpServlet {
 		
 		response.addHeader("Melnica", "Batuhan Düzgün");
 		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().println("<htm><body>Hello Melnica Server!</body></html>");
+		response.getWriter().println("<htm><body><h1>Hello Melnica Server!</h1><img src=\"/melnica-servlet-demo/melnica_server_logo.png\" width=\"200px\" height=\"100px\" /></body></html>");
 		System.out.println(">>> GreetingServlet is executed! (HTTP POST)");
 	}
 }

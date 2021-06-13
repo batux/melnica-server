@@ -11,18 +11,16 @@ public class SocketContextProcessor implements Runnable {
 	private volatile Bosphorus connector;
 	private volatile Socket socket;
 	private volatile String domain;
-	private volatile String hostName;
 	
-	public SocketContextProcessor(Service service, Bosphorus connector, Socket socket, String domain, String hostName) {
+	public SocketContextProcessor(Service service, Bosphorus connector, Socket socket, String domain) {
 		this.service = service;
 		this.connector = connector;
 		this.socket = socket;
 		this.domain = domain;
-		this.hostName = hostName;
 	}
 	
 	public void run() {
-		if(!this.service.execute(new SocketContext(socket, domain, hostName))) {
+		if(!this.service.execute(new SocketContext(socket, domain))) {
 			this.connector.stop();
 		}
 	}

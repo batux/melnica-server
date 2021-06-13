@@ -6,12 +6,10 @@ public class SocketContext {
 
 	private Socket socket;
 	private String domain;
-	private String hostName;
 	
-	public SocketContext(Socket socket, String domain, String hostName) {
+	public SocketContext(Socket socket, String domain) {
 		this.socket = socket;
 		this.domain = domain;
-		this.hostName = hostName;
 	}
 	
 	public Socket getSocket() {
@@ -20,9 +18,5 @@ public class SocketContext {
 	
 	public String getDomain() {
 		return this.domain;
-	}
-	
-	public String getHostName() {
-		return this.hostName;
 	}
 }
