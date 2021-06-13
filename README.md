@@ -40,6 +40,7 @@ Melnica: Batuhan Düzgün
 
 ## References
 - https://l-webx.gitbooks.io/how_tomcat_works/content/index.html
+- https://www3.ntu.edu.sg/home/ehchua/programming/webprogramming/HTTP_Basics.html
 - https://github.com/xianfengxiong/how-tomcat-work/tree/master/book/tomcat-4.1.12-src
 - https://medium.com/@nikhilmanikonda/tomcat-who-i-am-and-what-i-do-e91ff72fb2ea
 - https://www.net.t-labs.tu-berlin.de/teaching/computer_networking/ap01.htm
